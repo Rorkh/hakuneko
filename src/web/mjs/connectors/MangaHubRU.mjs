@@ -45,7 +45,7 @@ export default class MangaHubRU extends Connector {
     async _getChapters(manga) {
         let uri = new URL(manga.id.replace('/title/', '/chapters/'), this.url);
         let request = new Request(uri, this.requestOptions);
-        let data = await this.fetchDOM(request, 'div.detail-chapters div.detail-chapter div.flex-column a');
+        let data = await this.fetchDOM(request, 'div.detail-chapters div.detail-chapter div.flex-column a span.text-truncate');
         return data.map(element => {
             return {
                 id: this.getRootRelativeOrAbsoluteLink(element, request.url),
